@@ -59,9 +59,23 @@ def input_item(data):
             print("Invalid input! Please enter something"
                   " other than white space.")
 
-bill = []
+
+## Float Validation
+def input_float(data):
+    """
+    Validate all float values
+    """
+    while True:
+        try:
+            userInput = float(input(data))
+        except ValueError:
+            print("Please enter a number.")
+            continue
+        else:
+            return userInput
 
 def split(data):
+    bill = []
     """
     Creates the bill depending on user inputs
     """
@@ -69,11 +83,16 @@ def split(data):
         """
         Takes the user input and starts a new bill
         """
+        ## Input for names
         names = input_item('Please enter a list of all members, seperated by a comma ",": \n')
-        names_split = names.split(',')
+        names_split =['Item', 'Cost'] + names.split(',')
         bill.append(names_split)
-        for i in bill:
-            print(i)
+        item = input_item('Please enter an item to split: \n')
+        item_cost = input_float('How much does this item cost? \n')
+        users = input_item('Please enter a list of all members, seperated by a comma ",": \n')
+        user_split = [item, item_cost] + users.split(',')
+        bill.append(user_split)
+        df= pd.DataFrame(bill)
     elif data in new:
         """
         Adds a new item to the bill
@@ -91,6 +110,7 @@ def split(data):
         print('delete bill')
     else:
         print('Invalide entry. Please try again.')
+    print(df)
 
 def main():
     """
@@ -104,4 +124,3 @@ def main():
 #run_intro()
 print("Let's split this bill! \n")
 main()
-print(bill)
