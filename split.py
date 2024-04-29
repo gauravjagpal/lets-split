@@ -89,8 +89,10 @@ def split(data):
         bill.append(names_split)
         item = input_item('Please enter an item to split: \n')
         item_cost = input_float('How much does this item cost? \n')
-        users = input_item('Please enter a list of all members, seperated by a comma ",": \n')
-        user_split = [item, item_cost] + users.split(',')
+        users = input_item('Please enter a list of all members, seperated by a comma ",": \n').split(',')
+        user_count = len(users)
+        user_cost = str(item_cost / user_count)
+        user_split = [item, item_cost] + user_count
         bill.append(user_split)
         df= pd.DataFrame(bill)
     elif data in new:
@@ -111,6 +113,7 @@ def split(data):
     else:
         print('Invalide entry. Please try again.')
     print(df)
+
 
 def main():
     """
