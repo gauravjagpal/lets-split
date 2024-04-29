@@ -45,4 +45,43 @@ def validate_data(data):
 
     return True
 
+def split(data):
+    """
+    Creates the bill depending on user inputs
+    """
+    if data in start:
+        """
+        Takes the user input and starts a new bill
+        """
+        print('new bill')
+    elif data in new:
+        """
+        Adds a new item to the bill
+        """
+        print('new item')
+    elif data in updater:
+        """
+        Updates an existing item in the bill
+        """
+        print('update bill')
+    elif data in delete:
+        """
+        Deletes the item requested
+        """
+        print('delete bill')
+    else:
+        print('Invalide entry. Please try again.')
+
+def main():
+    """
+    run all functions
+    """
+    input = input_type()
+    split(input)
+
+# Run intro first as if the user wants to reuse the tool,
+# we don't want the intro to run again
+#run_intro()
+print("Let's split this bill! \n")
+main()
 
