@@ -45,6 +45,22 @@ def validate_data(data):
 
     return True
 
+def input_item(data):
+    """
+    Testing user input to make sure they do not enter an empty
+    string or a blank string.
+    """
+
+    while True:
+        user_input = input(data)
+        if user_input.strip() != '':
+            return user_input
+        else:
+            print("Invalid input! Please enter something"
+                  " other than white space.")
+
+bill = []
+
 def split(data):
     """
     Creates the bill depending on user inputs
@@ -53,7 +69,11 @@ def split(data):
         """
         Takes the user input and starts a new bill
         """
-        print('new bill')
+        names = input_item('Please enter a list of all members, seperated by a comma ",": \n')
+        names_split = names.split(',')
+        bill.append(names_split)
+        for i in bill:
+            print(i)
     elif data in new:
         """
         Adds a new item to the bill
@@ -84,4 +104,4 @@ def main():
 #run_intro()
 print("Let's split this bill! \n")
 main()
-
+print(bill)
